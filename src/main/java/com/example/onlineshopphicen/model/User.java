@@ -21,6 +21,7 @@ public class User {
     private Long id;
     private String name;
     private String surname;
+    private String username;
     private String password;
     private String email;
     private String address;
@@ -38,4 +39,17 @@ public class User {
     @OneToOne(mappedBy = "user")
     private Wishlist wishlist;
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", address='" + address + '\'' +
+                ", phone='" + phone + '\'' +
+                '}';
+    }
 }
