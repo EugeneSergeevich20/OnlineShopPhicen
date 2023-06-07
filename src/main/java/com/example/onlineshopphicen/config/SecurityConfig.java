@@ -33,7 +33,11 @@ public class  SecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin().loginPage("/auth/login")
                 .loginProcessingUrl("/process_login") /*по этому аддресу Spring Security будет принимать логин и пароль*/
                 .defaultSuccessUrl("/hello", true)
-                .failureUrl("/auth/login?error"); /* если логин или пароль неправильный - перенапрявляет обратно на страницу login, но с папраметром(param) - error*/
+                .failureUrl("/auth/login?error")/* если логин или пароль неправильный - перенапрявляет обратно на страницу login, но с папраметром(param) - error*/
+                .and()
+                .logout()
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/auth/login");
     }
 
     //Настраивает аутентификацию
