@@ -1,32 +1,51 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Registration</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>registration</title>
+	<link rel="stylesheet" href="/css/styleRegistration.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,600;0,700;1,300;1,400&display=swap"
+		rel="stylesheet">
 </head>
+
 <body>
-<form th:method="POST" th:action="@{/auth/registration}" th:object="${user}">
-  <label for="name">Введите имя пользователя: </label>
-  <input type="text" th:field="*{name}" id="name">
-  <div style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name error</div>
-  <br/>
-  <label for="surname">Введите фамилию пользователя: </label>
-  <input type="text" th:field="*{surname}" id="surname">
-  <div style="color: red" th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}">Surname error</div>
-  <br/>
-  <label for="address">Введите адрес пользователя: </label>
-  <input type="text" th:field="*{address}" id="address">
-  <div style="color: red" th:if="${#fields.hasErrors('address')}" th:errors="*{address}">Address error</div>
-  <br/>
-  <label for="username">Введите логин пользователя: </label>
-  <input type="text" th:field="*{username}" id="username">
-  <div style="color: red" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username error</div>
-  <br/>
-  <label for="password">Введите пароль: </label>
-  <input type="password" th:field="*{password}" id="password">
-  <div style="color: red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password error</div>
-  <br/>
-  <input type="submit" value="Sign up"/>
-</form>
+	<div class="container">
+		<form class="form__body" th:method="POST" th:action="@{/auth/registration}" th:object="${user}">
+			<div class="form__item">
+				<h1 class="form__title">Регистрация</h1>
+			</div>
+			<div class="form__item">
+				<input placeholder="Имя" type="text" th:field="*{name}">
+			</div>
+			<div class="form__item">
+				<input placeholder="Фамилия" type="text" th:field="*{surname}">
+			</div>
+			<div class="form__item">
+				<input placeholder="Логин" type="tel" th:field="*{username}">
+			</div>
+			<div class="register_error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">
+					Пользователь с таким именем уже существует!
+			</div>
+			<div class="form__item">
+				<input placeholder="Пароль" type="password" th:field="*{password}">
+			</div>
+			<div class="form__item">
+				<button class="form__button" type="submit">Зарегистрироваться</button>
+			</div>
+			<div class="form__item">
+				Уже есть аккаунт?
+			</div>
+			<div class="form__item">
+				<a th:href="@{/auth/login}">Войти</a>
+			</div>
+		</form>
+	</div>
+
 </body>
+
 </html>

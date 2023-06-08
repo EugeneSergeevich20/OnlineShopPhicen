@@ -1,24 +1,49 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Login page</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>login</title>
+	<link rel="stylesheet" href="/css/styleLogin.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,600;0,700;1,300;1,400&display=swap"
+		rel="stylesheet">
 </head>
+
 <body>
+	<div class="container">
+		<form class="form__body" method="post" action="/process_login">
 
-<form name="f" method="post" action="/process_login">
-  <label for="username">Введите имя пользователя: </label>
-  <input type="text" name="username" id="username">
-  <br/>
-  <label for="password">Введите пароль: </label>
-  <input type="password" name="password" id="password">
-  <br/>
-  <input type="submit" value="Login"/>
+			<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
 
-  <div th:if="${param.error}" style="color: red">
-    Неправильный логин или пароль
-  </div>
-</form>
+			<div class="form__item">
+				<h1 class="form__title">Войти</h1>
+			</div>
+			<div class="login_error" th:if="${param.error}">
+				Неправильный логин или пароль
+			</div>
+			<div class="form__item">
+				<input placeholder="Логин" type="tel" name="username">
+			</div>
+			<div class="form__item">
+				<input placeholder="Пароль" type="password" name="password">
+			</div>
+			<div class="form__item">
+				<button class="form__button" type="submit">Войти</button>
+			</div>
+			<div class="form__item">
+				Нет аккаунта?
+			</div>
+			<div class="form__item">
+				<a th:href="@{/auth/registration}">Зарегистрироваться</a>
+			</div>
+		</form>
+		
+	</div>
 
 </body>
+
 </html>

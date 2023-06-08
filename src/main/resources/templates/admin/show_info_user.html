@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${'Пользователь - ' + user.getName()}">Value</title>
+</head>
+<body>
+<p th:text="${user.getName() + ', ' + user.getSurname() + ', ' + user.getRole().name()}">Value</p>
+
+<form th:method="GET" th:action="@{/admin/user/{id}/edit(id=${user.getId()})}">
+    <input type="submit" value="Редактировать"/>
+</form>
+
+</body>
+</html>

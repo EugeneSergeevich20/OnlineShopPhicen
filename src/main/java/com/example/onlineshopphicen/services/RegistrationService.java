@@ -1,8 +1,10 @@
 package com.example.onlineshopphicen.services;
 
+import com.example.onlineshopphicen.model.Role;
 import com.example.onlineshopphicen.model.User;
 import com.example.onlineshopphicen.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,13 +13,18 @@ public class RegistrationService {
 
     private final UserRepository userRepository;
 
+    private final PasswordEncoder passwordEncoder;
+
     @Autowired
-    public RegistrationService(UserRepository userRepository) {
+    public RegistrationService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder =passwordEncoder;
     }
 
     @Transactional
     public void register(User user){
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setRole(Role.ROLE_CLIENT);
         userRepository.save(user);
     }
 

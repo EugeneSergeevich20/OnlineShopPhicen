@@ -1,0 +1,64 @@
+
+body{
+	font-family: 'Montserrat', sans-serif;
+	background-color:rgb(212, 209, 244, 0.8);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+.container{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: rgb(253, 253, 253);
+	border-radius: 20px;
+	width: 350px;
+	height: 550px;
+	box-shadow: 0 4px 16px #000000;
+
+}
+.form__body{
+	width: 350px;
+	height: 550px;
+}
+.form__title{
+	font-weight: 50px;
+	padding: 10px 10px 10px 10px;
+	letter-spacing: 5px;
+
+}
+input{
+	height: 30px;
+	width: 200px;
+	border-radius: 5px;
+}
+.form__item{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 20px;
+}
+.form__button{
+	height: 40px;
+	width: 200px;
+	background-color:rgb(212, 209, 244, 0.8);
+	border-radius: 5px;
+	text-align: center;
+	text-transform: uppercase;
+	font-weight: 700;
+
+}
+.form__button:hover{
+	background-color:rgba(59, 46, 196, 0.8);
+}
+
+.register_error{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 20px;
+	color: red;
+	text-align: center;
+	font-size: 12px;
+}
