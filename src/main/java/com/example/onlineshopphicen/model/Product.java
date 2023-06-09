@@ -25,7 +25,7 @@ public class Product {
     private BigDecimal price;
     private int quantity;
 
-    @OneToMany(mappedBy = "product")
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private List<ImageProduct> imageProducts;
 
     @ManyToOne

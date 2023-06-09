@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <title>ДЛЯ АДМИНА</title>
+    <link rel="stylesheet" href="/css/styleAdmin.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header>
+    <div class="header__container">
+        <div class="header-top">
+            <div class="header-top__items">
+                <div class="top__item">
+                    <div class="linkvk">
+                        <a href="">
+                            <img class="imgvk" src="/img/vk.svg" alt="vk">
+                        </a>
+                    </div>
+                </div>
+                <div class="top__item">
+                    <div class="linktg">
+                        <a href="">
+                            <img class="imgtg" src="/img/tg.svg" alt="tg">
+                        </a>
+                    </div>
+                </div>
+                <div class="top__item">
+                    <div class="numberbackg">
+                        <div class="number">+7 (999) 99-99</div>
+                    </div>
+                </div>
+                <div class="item__write">
+                    <div class="writebackg">
+                        <a href="" class="write">напишите нам</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header-bottom">
+            <div class="header-bottom__items">
+                <div class="bottom__item">
+                    <a class="nav" href="/img/index.html">ГЛАВНАЯ</a>
+                </div>
+                <div class="bottom__item">
+                    <a class="nav" href="/img/catalog.html">КАТАЛОГ</a>
+                </div>
+                <div class="bottom__item">
+                    <a class="nav" href="">ОТЗЫВЫ</a>
+                </div>
+                <div class="bottom__item">
+                    <a class="nav" href="">НОВОСТИ</a>
+                </div>
+                <div class="bottom__item">
+                    <a class="nav" href="">НОВИНКИ</a>
+                </div>
+
+                <div class="bottom-img__item">
+                    <div class="imgnav">
+                        <a href="C:\Users\irive\OneDrive\Рабочий стол\dolls\login\login.html">
+                            <img class="navimg" src="/img/account.svg" alt="">
+                        </a>
+                    </div>
+                    <div class="imgnav">
+                        <a href="">
+                            <img class="navimg" src="/img/favourites.svg" alt="">
+                        </a>
+                    </div>
+                    <div class="imgnav">
+                        <a href="">
+                            <img class="navimg" src="/img/cart.svg" alt="">
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</header>
+
+<div class="content">
+    <div class="content__container">
+        <div class="adminpage">
+            <div class="backgtitle">
+                <div class="page__title">Все пользователи:</div>
+            </div>
+
+            <div class="backgtable">
+                <table class="table" >
+                    <tbody>
+                    <tr>
+                        <td>Наименование товара</td>
+                        <td>Описание товара</td>
+                        <td>Цена</td>
+                        <td>Колличество</td>
+                        <td>Фото</td>
+                        <td>Удвлить</td>
+                    </tr>
+                    <tr th:each="product : ${products}">
+                        <td th:text="${product.name}"></td>
+                        <td th:text="${product.description}"></td>
+                        <td th:text="${product.price}"></td>
+                        <td th:text="${product.quantity}"></td>
+                        <td>
+                            <form th:method="GET" th:action="@{/manager/product/{id}(id=${product.getId()})}">
+                                <button type="submit" class="btn">
+                                    <div class="btntext">Добавить фотографии товара</div>
+                                </button>
+                            </form>
+                        </td>
+                        <td>
+                            <form th:method="DELETE" th:action="@{/manager/delete/{id}(id=${product.getId()})}" >
+                                <button type="submit" class="btn">
+                                    <div class="btntext">Удалить товар</div>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<!-- <footer class="footer">
+    <div class="footer__container">
+
+    </div>
+
+</footer> -->
+</body>
+
+</html>

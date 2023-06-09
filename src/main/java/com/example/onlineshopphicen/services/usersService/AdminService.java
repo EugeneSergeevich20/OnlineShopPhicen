@@ -1,4 +1,4 @@
-package com.example.onlineshopphicen.services;
+package com.example.onlineshopphicen.services.usersService;
 
 import com.example.onlineshopphicen.model.Role;
 import com.example.onlineshopphicen.model.User;

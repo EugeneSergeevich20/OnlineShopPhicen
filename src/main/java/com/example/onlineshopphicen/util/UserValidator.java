@@ -1,7 +1,7 @@
 package com.example.onlineshopphicen.util;
 
 import com.example.onlineshopphicen.model.User;
-import com.example.onlineshopphicen.services.UserDetailsService;
+import com.example.onlineshopphicen.services.usersService.UserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;

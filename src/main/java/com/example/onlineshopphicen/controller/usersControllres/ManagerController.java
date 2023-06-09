@@ -1,4 +1,4 @@
-package com.example.onlineshopphicen.controller;
+package com.example.onlineshopphicen.controller.usersControllres;
 
 import com.example.onlineshopphicen.model.Product;
 import com.example.onlineshopphicen.services.productService.ImageService;
@@ -28,12 +28,12 @@ public class ManagerController {
     @GetMapping("/products")
     public String showAllProducts(Model model){
         model.addAttribute("products", productService.findAllProducts());
-        return "/product/show_all_products";
+        return "/product/manager/show_all_products";
     }
 
     @GetMapping("/product/add")
     public String addProduct(@ModelAttribute("product")Product product){
-        return "/product/add";
+        return "/product/manager/add";
     }
 
     @PostMapping("/products")
@@ -50,13 +50,19 @@ public class ManagerController {
 
 
 
-        return "/product/show_info_product";
+        return "/product/manager/show_info_product";
     }
 
     @PostMapping("/product/{id}")
     public String addImageProduct(@RequestParam("image") List<MultipartFile> image, @PathVariable Long id) throws IOException {
         Product product = productService.findProductById(id);
         imageService.save(image, product);
+        return "redirect:/manager/products";
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public String deleteProduct(@PathVariable("id") Long id){
+        productService.delete(id);
         return "redirect:/manager/products";
     }
 

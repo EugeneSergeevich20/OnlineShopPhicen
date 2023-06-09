@@ -1,8 +1,8 @@
-package com.example.onlineshopphicen.controller;
+package com.example.onlineshopphicen.controller.usersControllres;
 
 import com.example.onlineshopphicen.model.Role;
 import com.example.onlineshopphicen.model.User;
-import com.example.onlineshopphicen.services.AdminService;
+import com.example.onlineshopphicen.services.usersService.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,7 +40,7 @@ public class AdminController {
         return "/admin/edit_user_info";
     }
 
-    @PostMapping("/user/{id}")
+    @PatchMapping("/user/{id}")
     public String updateRole(@PathVariable("id") Long id, @ModelAttribute("user") User userRole){
         User user = adminService.findUserById(id);
         user.setRole(userRole.getRole());

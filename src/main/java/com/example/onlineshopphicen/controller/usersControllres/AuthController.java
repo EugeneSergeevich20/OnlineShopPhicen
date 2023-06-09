@@ -1,7 +1,7 @@
-package com.example.onlineshopphicen.controller;
+package com.example.onlineshopphicen.controller.usersControllres;
 
 import com.example.onlineshopphicen.model.User;
-import com.example.onlineshopphicen.services.RegistrationService;
+import com.example.onlineshopphicen.services.usersService.RegistrationService;
 import com.example.onlineshopphicen.util.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
