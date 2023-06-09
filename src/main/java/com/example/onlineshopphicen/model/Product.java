@@ -25,7 +25,8 @@ public class Product {
     private BigDecimal price;
     private int quantity;
 
-    //private ... image;
+    @OneToMany(mappedBy = "product")
+    private List<ImageProduct> imageProducts;
 
     @ManyToOne
     @JoinColumn(name = "category_id", referencedColumnName = "id")

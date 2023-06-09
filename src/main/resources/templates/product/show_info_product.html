@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p th:text="${product.getName() + ', ' + product.getDescription() + ', ' + product.getPrice()}"></p>
+
+<div th:if="${product.imageProducts.isEmpty()}">Фото нет</div>
+<div th:if="${!product.imageProducts.isEmpty()}">
+    <div th:each="imageImfo : ${product.imageProducts}">
+        <img th:src="@{'data:image/jpeg;base64,'+${imageImfo.generateBase64Image()}}"/>
+    </div>
+</div>
+
+<form th:method="POST" th:action="@{/manager/product/{id}(id=${product.getId()})}" enctype="multipart/form-data">
+    <input type="file" name="image" accept="image/*" multiple="multiple">
+    <input type="submit" value="Добавить фото" >
+</form>
+
+</body>
+</html>

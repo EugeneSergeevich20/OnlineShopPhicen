@@ -30,12 +30,12 @@ public class  SecurityConfig extends WebSecurityConfigurerAdapter {
         //конфигурируем авторизацию
         // .antMatchers("/admin").hasRole("ADMIN") - Доступ по ролям
         http.authorizeRequests()
-                .antMatchers("/auth/login", "/auth/registration", "/error", "/css/**", "/img/**").permitAll()
-                .anyRequest().hasAnyRole("CLIENT", "ADMIN")
+                .antMatchers("/auth/login", "/auth/registration", "/error", "/css/**", "/img/**", "/home").permitAll()
+                .anyRequest().hasAnyRole("CLIENT", "ADMIN", "MANAGER")
                 .and()
                 .formLogin().loginPage("/auth/login")
                 .loginProcessingUrl("/process_login") /*по этому аддресу Spring Security будет принимать логин и пароль*/
-                .defaultSuccessUrl("/hello", true)
+                .defaultSuccessUrl("/home", true)
                 .failureUrl("/auth/login?error")/* если логин или пароль неправильный - перенапрявляет обратно на страницу login, но с папраметром(param) - error*/
                 .and()
                 .logout()

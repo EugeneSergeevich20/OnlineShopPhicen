@@ -11,7 +11,7 @@
 
     <label for="role">Выбрать роль для пользователя: </label>
     <select th:object="${user}" th:field="*{role}" id="role">
-        <option th:each="role : ${roles}" th:value="${role.name()}" th:text="${role.name()}"></option>
+        <option th:each="role : ${roles}" th:value="${role.name()}" th:text="${role.displayValue}"></option>
     </select>
 
     <input type="submit" value="Назначить роль пользователю">

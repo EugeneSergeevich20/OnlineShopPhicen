@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Product</title>
+</head>
+<body>
+
+<form th:method="POST" th:action="@{/manager/products}" th:object="${product}" >
+    <input placeholder="Наименование продукта" type="text" th:field="*{name}"/>
+    <input placeholder="Описание продукта" type="text" th:field="*{description}"/>
+    <input placeholder="Цена продукта" type="text" th:field="*{price}"/>
+
+    <input type="submit" value="Добавить продукт"/>
+</form>
+
+</body>
+</html>
