@@ -37,4 +37,10 @@ public class ClientController {
         cartService.addProductToCart(userDetailsService.getUserCart(), product);
         return "redirect:/catalog";
     }
+
+    @GetMapping("/account")
+    public String account(Model model){
+        model.addAttribute("account", userDetailsService.getAuthUser());
+        return "account";
+    }
 }

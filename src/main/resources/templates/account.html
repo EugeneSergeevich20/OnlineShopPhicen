@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<title>Mizi JHDtoys: account</title>
+	<link rel="stylesheet" href="/css/account.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+<header>
+	<div class="header__container">
+		<div class="header-top">
+			<div class="header-top__items">
+				<div class="top__item">
+					<div class="linkvk">
+						<a href="">
+							<img class="imgvk" src="/img/vk.svg" alt="vk">
+						</a>
+					</div>
+				</div>
+				<div class="top__item">
+					<div class="linktg">
+						<a href="">
+							<img class="imgtg" src="/img/tg.svg" alt="vk">
+						</a>
+					</div>
+				</div>
+				<div class="top__item">
+					<div class="numberbackg">
+						<div class="number">+7 (999) 99-99</div>
+					</div>
+				</div>
+				<div class="item__write">
+					<div class="writebackg">
+						<a href="" class="write">напишите нам</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="header-bottom">
+			<div class="header-bottom__items">
+				<div class="bottom__item">
+					<a class="nav" th:href="@{/home}">ГЛАВНАЯ</a>
+				</div>
+				<div class="bottom__item">
+					<a class="nav" th:href="@{/catalog}">КАТАЛОГ</a>
+				</div>
+				<div class="bottom__item">
+					<a class="nav" href="">ОТЗЫВЫ</a>
+				</div>
+				<div class="bottom__item">
+					<a class="nav" href="">НОВОСТИ</a>
+				</div>
+				<div class="bottom__item">
+					<a class="nav" href="">НОВИНКИ</a>
+				</div>
+
+				<div class="bottom-img__item">
+					<div class="imgnav" th:if="${userAuth == null}">
+						<a th:href="@{/auth/login}">
+							<img class="navimg" src="/img/account.svg" alt="">
+						</a>
+					</div>
+					<div class="imgnav" th:if="${userAuth != null}">
+						<a th:href="@{/account}"> <!--поменять на адрес профиля-->
+							<img class="navimg" src="/img/account.svg" alt="">
+						</a>
+					</div>
+					<div class="imgnav">
+						<a href="">
+							<img class="navimg" src="/img/favourites.svg" alt="">
+						</a>
+					</div>
+					<div class="imgnav">
+						<a th:href="@{/cart}">
+							<img class="navimg" src="/img/cart.svg" alt="">
+						</a>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+	</div>
+</header>
+	<div class="content">
+		<div class="content__container">
+			<div class="myaccount">
+
+				<div class="myaccount__title">МОЙ АККАУНТ</div>
+
+				<div class="myaccount__field">
+					<div class="info">
+						<div class="info__item">
+							<div class="myaccount__name">Имя:
+								<span class="name__text" th:text="${account.name}">name</span>
+							</div>
+						</div>
+						<div class="info__item">
+							<div class="myaccount__surname">Фамилия:
+								<span class="surname__text" th:text="${account.surname}">surname</span>
+							</div>
+						</div>
+						<div class="info__item">
+							<div class="myaccount__mail">Почта:
+								<span class="mail__text" th:text="${account.email}">email</span>
+							</div>
+						</div>
+						<div class="info__item">
+							<div class="myaccount__tel">Телефон:
+								<span class="tel__text" th:text="${account.phone}">phone</span>
+							</div>
+						</div>
+						<div class="info__item">
+							<div class="item__edit">
+								<a href="" class="edit">редактировать аккаунт</a>
+							</div>
+						</div>
+					
+					
+						<div class="item__exit">
+							<form th:action="@{/logout}" th:method="POST">
+								<input class="inpex" type="submit" value="ВЫЙТИ ИЗ АККАУНТА">
+							</form>
+						</div>
+					
+					</div>
+
+					<div class="btnn">
+						<div class="btn__item" sec:authorize="hasRole('ROLE_ADMIN')">
+							<a th:href="@{/admin/users}" class="foradmin">администратор</a>
+						</div>
+						<div class="btn__item" sec:authorize="hasRole('ROLE_MANAGER')">
+							<a th:href="@{/manager/products}" class="formanager">менеджер</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="adminpage">
+					<div class="backgtitle">
+						<div class="page__title">История заказов:</div>
+					</div>
+	
+					<div class="backgtable">
+						<table class="table">
+							<tbody>
+								<tr>
+									<td>ДАТА</td>
+									<td>АДРЕС</td>
+									<td>СУММА</td>
+									<td>СТАТУС</td>
+								</tr>
+								
+								<tr>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+						
+								</tr>
+								<tr>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									
+								</tr>
+								<tr>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									
+								</tr>
+								<tr>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									
+								</tr>
+								<tr>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									
+								</tr>
+							</tbody>
+						</table>
+					</div>
+	
+				</div>
+	
+
+
+			</div>
+		</div>
+	</div>
+
+
+</body>
+
+</html>
