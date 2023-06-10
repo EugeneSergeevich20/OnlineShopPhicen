@@ -39,6 +39,9 @@ public class User {
     @OneToOne(mappedBy = "user")
     private Wishlist wishlist;
 
+    @OneToOne(mappedBy = "user")
+    private Cart cart;
+
     @Override
     public String toString() {
         return "User{" +

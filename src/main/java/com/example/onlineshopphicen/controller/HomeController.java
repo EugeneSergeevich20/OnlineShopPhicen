@@ -39,13 +39,5 @@ public class HomeController {
         return "index";
     }
 
-    @GetMapping("/catalog")
-    public String catalog(Model model){
-
-        model.addAttribute("userAuth", userDetailsService.getAuthUser());
-
-        return "/catalog/catalog";
-    }
-
 
 }

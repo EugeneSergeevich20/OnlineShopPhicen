@@ -95,91 +95,24 @@
 			<div class="catalog">
 				<div class="catalog__title">КАТАЛОГ</div>
 				<div class="catalog__columns">
-					<div class="columns">
-						<div class="columns__item">
+					<div class="columns" >
+						<div class="columns__item" th:each="product : ${products}">
 							<div class="item__product">
-								<div class="title__item">ТОВАР</div>
-								<div class="img__item"></div>
-								<div class="description"></div>
+								<div class="title__item" th:text="${product.name}">ТОВАР</div>
+								<div class="img__item" th:each="imageImfo : ${product.imageProducts}">
+									<img th:src="@{'data:image/jpeg;base64,'+${imageImfo.generateBase64Image()}}" height="100%"/>
+								</div>
+								<div class="description"  th:text="${product.additionallyInfo}"></div>
 							</div>
 						</div>
-						<div class="columns__item">
-							<div class="item__product">
-								<div class="title__item">ТОВАР</div>
-								<div class="img__item"></div>
-								<div class="description"></div>
-							</div>
-						</div>
-						<div class="columns__item">
-							<div class="item__product">
-								<div class="title__item">ТОВАР</div>
-								<div class="img__item"></div>
-								<div class="description"></div>
-							</div>
-						</div>
-						<div class="columns__item">
-							<div class="item__product">
-								<div class="title__item">ТОВАР</div>
-								<div class="img__item"></div>
-								<div class="description"></div>
-							</div>
-						</div>
-						<div class="columns__item">
-							<div class="item__product">
-								<div class="title__item">ТОВАР</div>
-								<div class="img__item"></div>
-								<div class="description"></div>
-							</div>
-						</div>
-						<div class="columns__item">
-							<div class="item__product">
-								<div class="title__item">ТОВАР</div>
-								<div class="img__item"></div>
-								<div class="description"></div>
-							</div>
-						</div>
-						<div class="columns__item">
-							<div class="item__product">
-								<div class="title__item">ТОВАР</div>
-								<div class="img__item"></div>
-								<div class="description"></div>
-							</div>
-						</div>
-						<div class="columns__item">
-							<div class="item__product">
-								<div class="title__item">ТОВАР</div>
-								<div class="img__item"></div>
-								<div class="description"></div>
-							</div>
-						</div>
-						<div class="columns__item">
-							<div class="item__product">
-								<div class="title__item">ТОВАР</div>
-								<div class="img__item"></div>
-								<div class="description"></div>
-							</div>
-						</div>
-						<div class="columns__item">
-							<div class="item__product">
-								<div class="title__item">ТОВАР</div>
-								<div class="img__item"></div>
-								<div class="description"></div>
-							</div>
-						</div>
-						<div class="columns__item">
-							<div class="item__product">
-								<div class="title__item">ТОВАР</div>
-								<div class="img__item"></div>
-								<div class="description"></div>
-							</div>
-						</div>
-						<div class="columns__item">
-							<div class="item__product">
-								<div class="title__item">ТОВАР</div>
-								<div class="img__item"></div>
-								<div class="description"></div>
-							</div>
-						</div>
+
+					</div>
+					<div th:if="${products.getTotalPages() > 0}" class="pagination"
+						 th:each="pageNumber : ${pageNumbers}">
+						<a th:href="@{/catalog(size=${products.size}, page=${pageNumber})}"
+						   th:text="${pageNumber}"
+						   th:class="${pageNumber==products.number + 1} ? active">
+						</a>
 					</div>
 				</div>
 			</div>

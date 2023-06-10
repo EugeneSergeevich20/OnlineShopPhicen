@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cart</title>
+</head>
+<body>
+Товары
+<table class="table" >
+  <tbody>
+  <tr>
+    <td>Наименование товара</td>
+    <td>Цена товара</td>
+  </tr>
+  <tr th:each="product : ${cart.products}">
+    <td th:text="${product.name}"></td>
+    <td th:text="${product.price}"></td>
+  </tr>
+  </tbody>
+</table>
+<p>Итого: </p>
+<p th:text="${cart.getTotalPrice()}"></p>
+</body>
+</html>

@@ -47,9 +47,6 @@ public class ManagerController {
 
         Product product = productService.findProductById(id);
         model.addAttribute("product", product);
-
-
-
         return "/product/manager/show_info_product";
     }
 

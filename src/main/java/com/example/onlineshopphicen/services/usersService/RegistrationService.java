@@ -1,5 +1,6 @@
 package com.example.onlineshopphicen.services.usersService;
 
+import com.example.onlineshopphicen.model.Cart;
 import com.example.onlineshopphicen.model.Role;
 import com.example.onlineshopphicen.model.User;
 import com.example.onlineshopphicen.repositories.UserRepository;

@@ -8,7 +8,7 @@
 
 <form th:method="POST" th:action="@{/manager/products}" th:object="${product}" >
     <input placeholder="Наименование продукта" type="text" th:field="*{name}"/>
-    <input placeholder="Описание продукта" type="text" th:field="*{description}"/>
+    <input placeholder="Описание продукта" type="text" th:field="*{additionallyInfo}"/>
     <input placeholder="Цена продукта" type="text" th:field="*{price}"/>
 
     <input type="submit" value="Добавить продукт"/>

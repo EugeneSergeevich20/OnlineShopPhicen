@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-<p th:text="${product.getName() + ', ' + product.getDescription() + ', ' + product.getPrice()}"></p>
+<p th:text="${product.getName() + ', ' + product.getAdditionallyInfo() + ', ' + product.getPrice()}"></p>
 
 <div th:if="${product.imageProducts.isEmpty()}">Фото нет</div>
 <div th:if="${!product.imageProducts.isEmpty()}">

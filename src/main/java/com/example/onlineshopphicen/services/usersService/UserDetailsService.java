@@ -1,5 +1,6 @@
 package com.example.onlineshopphicen.services.usersService;
 
+import com.example.onlineshopphicen.model.Cart;
 import com.example.onlineshopphicen.model.User;
 import com.example.onlineshopphicen.repositories.UserRepository;
 import com.example.onlineshopphicen.security.UserDetailsImpl;
@@ -10,6 +11,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.security.Principal;
 import java.util.Optional;
@@ -49,5 +51,10 @@ public class UserDetailsService implements org.springframework.security.core.use
         else
             userDerails = (UserDetailsImpl) authentication.getPrincipal();*/
         return userDerails.getUser();
+    }
+
+    public Cart getUserCart(){
+        User user = getAuthUser();
+        return user.getCart();
     }
 }

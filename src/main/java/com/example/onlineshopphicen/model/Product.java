@@ -5,8 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -21,9 +23,16 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private String description;
+    private String sculpt;
+    private String hairColor;
+    private String bodyType;
+    private String skinTone;
+    private String edition;
+    private String additionallyInfo;
     private BigDecimal price;
     private int quantity;
+    @CreationTimestamp
+    private LocalDateTime addDate;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private List<ImageProduct> imageProducts;

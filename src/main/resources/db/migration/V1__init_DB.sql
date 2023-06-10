@@ -53,8 +53,14 @@ create table products
     quantity    integer   not null,
     category_id bigint,
     id          bigserial not null,
-    description varchar(255),
+    sculpt      varchar(255),
+    hair_color   varchar(255),
+    body_type    varchar(255),
+    skin_tone    varchar(255),
+    edition     varchar(255),
+    additionally_info varchar(255),
     name        varchar(255),
+    add_date     timestamp(6),
     primary key (id)
 );
 create table reviews
