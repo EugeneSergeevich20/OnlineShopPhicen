@@ -2,6 +2,7 @@ package com.example.onlineshopphicen.services.usersService;
 
 import com.example.onlineshopphicen.model.Cart;
 import com.example.onlineshopphicen.model.User;
+import com.example.onlineshopphicen.model.Wishlist;
 import com.example.onlineshopphicen.repositories.UserRepository;
 import com.example.onlineshopphicen.security.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,5 +57,10 @@ public class UserDetailsService implements org.springframework.security.core.use
     public Cart getUserCart(){
         User user = getAuthUser();
         return user.getCart();
+    }
+
+    public Wishlist getUserWishList(){
+        User user = getAuthUser();
+        return user.getWishlist();
     }
 }

@@ -43,4 +43,10 @@ public class ClientController {
         model.addAttribute("account", userDetailsService.getAuthUser());
         return "account";
     }
+
+    @GetMapping("/favorites")
+    public String getFavoritesPage(Model model){
+        model.addAttribute("wishlist", userDetailsService.getUserWishList());
+        return "favorites";
+    }
 }

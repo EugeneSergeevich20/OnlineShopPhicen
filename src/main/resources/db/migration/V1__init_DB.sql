@@ -84,6 +84,11 @@ create table users
     surname  varchar(255),
     primary key (id)
 );
+create table wish_list_products
+(
+    wish_list_id int8 not null,
+    product_id int8 not null
+);
 create table wishlist
 (
     id         bigserial not null,
@@ -102,7 +107,7 @@ alter table if exists carts_products
     foreign key (carts_id) references carts;
 alter table
     if exists image_product
-    add constraint FKr01evkpk9msgd6a4j55hv73ja
+    add constraint image_product_fk_products
     foreign key (product_id) references products;
 alter table if exists orders
     add constraint orders_users_fk
@@ -119,9 +124,12 @@ alter table if exists products
 alter table if exists reviews
     add constraint reviews_users_fk
     foreign key (user_id) references users;
-alter table if exists wishlist
-    add constraint wishlist_products_fk
+alter table if exists wish_list_products
+    add constraint wish_list_products_fk_products
     foreign key (product_id) references products;
+alter table if exists wish_list_products
+    add constraint wish_list_products_fk_wishlist
+    foreign key (wish_list_id) references wishlist;
 alter table if exists wishlist
     add constraint wishlist_users_fk
     foreign key (user_id) references users;

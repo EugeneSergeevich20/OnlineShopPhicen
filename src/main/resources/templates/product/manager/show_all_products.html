@@ -27,7 +27,7 @@
                 <div class="top__item">
                     <div class="linktg">
                         <a href="">
-                            <img class="imgtg" src="/img/tg.svg" alt="tg">
+                            <img class="imgtg" src="/img/tg.svg" alt="vk">
                         </a>
                     </div>
                 </div>
@@ -46,10 +46,10 @@
         <div class="header-bottom">
             <div class="header-bottom__items">
                 <div class="bottom__item">
-                    <a class="nav" href="/img/index.html">ГЛАВНАЯ</a>
+                    <a class="nav" th:href="@{/home}">ГЛАВНАЯ</a>
                 </div>
                 <div class="bottom__item">
-                    <a class="nav" href="/img/catalog.html">КАТАЛОГ</a>
+                    <a class="nav" th:href="@{/catalog}">КАТАЛОГ</a>
                 </div>
                 <div class="bottom__item">
                     <a class="nav" href="">ОТЗЫВЫ</a>
@@ -62,18 +62,23 @@
                 </div>
 
                 <div class="bottom-img__item">
-                    <div class="imgnav">
-                        <a href="C:\Users\irive\OneDrive\Рабочий стол\dolls\login\login.html">
+                    <div class="imgnav" th:if="${userAuth == null}">
+                        <a th:href="@{/auth/login}">
+                            <img class="navimg" src="/img/account.svg" alt="">
+                        </a>
+                    </div>
+                    <div class="imgnav" th:if="${userAuth != null}">
+                        <a th:href="@{/account}"> <!--поменять на адрес профиля-->
                             <img class="navimg" src="/img/account.svg" alt="">
                         </a>
                     </div>
                     <div class="imgnav">
-                        <a href="">
+                        <a th:href="@{/favorites}">
                             <img class="navimg" src="/img/favourites.svg" alt="">
                         </a>
                     </div>
                     <div class="imgnav">
-                        <a href="">
+                        <a th:href="@{/cart}">
                             <img class="navimg" src="/img/cart.svg" alt="">
                         </a>
                     </div>

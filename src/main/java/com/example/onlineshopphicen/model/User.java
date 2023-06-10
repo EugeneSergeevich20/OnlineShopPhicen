@@ -39,7 +39,7 @@ public class User {
     @OneToOne(mappedBy = "user")
     private Wishlist wishlist;
 
-    @OneToOne(mappedBy = "user")
+    @OneToOne(mappedBy = "user", cascade = CascadeType.MERGE)
     private Cart cart;
 
     @Override

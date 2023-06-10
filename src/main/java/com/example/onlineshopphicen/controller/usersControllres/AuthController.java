@@ -2,6 +2,7 @@ package com.example.onlineshopphicen.controller.usersControllres;
 
 import com.example.onlineshopphicen.model.User;
 import com.example.onlineshopphicen.services.CartService;
+import com.example.onlineshopphicen.services.WishListService;
 import com.example.onlineshopphicen.services.usersService.RegistrationService;
 import com.example.onlineshopphicen.util.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,12 +22,14 @@ public class AuthController {
     private final UserValidator userValidator;
     private final RegistrationService registrationService;
     private final CartService cartService;
+    private final WishListService wishListService;
 
     @Autowired
-    public AuthController(UserValidator userValidator, RegistrationService registrationService, CartService cartService) {
+    public AuthController(UserValidator userValidator, RegistrationService registrationService, CartService cartService, WishListService wishListService) {
         this.userValidator = userValidator;
         this.registrationService = registrationService;
         this.cartService = cartService;
+        this.wishListService = wishListService;
     }
 
     @GetMapping("/login")
@@ -51,6 +54,7 @@ public class AuthController {
 
         registrationService.register(user);
         cartService.createCart(user);
+        wishListService.createWishlist(user);
 
         return "redirect:/auth/login";
     }

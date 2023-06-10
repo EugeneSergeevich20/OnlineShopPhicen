@@ -44,10 +44,10 @@ public class Product {
     @OneToMany(mappedBy = "product")
     private List<OrderDetails> orderDetails;
 
-    @ManyToMany(mappedBy = "products")
+    @ManyToMany(mappedBy = "products", fetch = FetchType.LAZY)
     private List<Cart> carts;
 
-    @OneToMany(mappedBy = "product")
+    @ManyToMany(mappedBy = "products", fetch = FetchType.LAZY)
     private List<Wishlist> wishlists;
 
     public ImageProduct getImage(){

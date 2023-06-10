@@ -6,6 +6,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+import java.util.Set;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -20,8 +23,10 @@ public class Wishlist {
     @OneToOne
     @JoinColumn(name = "user_id",referencedColumnName = "id")
     private User user;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "product_id", referencedColumnName = "id")
-    private Product product;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "wish_list_products",
+            joinColumns = @JoinColumn(name = "wish_list_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id"))
+    private Set<Product> products;
 
 }
