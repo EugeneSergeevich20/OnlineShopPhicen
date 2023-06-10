@@ -98,11 +98,22 @@
 					<div class="columns" >
 						<div class="columns__item" th:each="product : ${products}">
 							<div class="item__product">
-								<div class="title__item" th:text="${product.name}">ТОВАР</div>
-								<div class="img__item" th:each="imageImfo : ${product.imageProducts}">
-									<img th:src="@{'data:image/jpeg;base64,'+${imageImfo.generateBase64Image()}}" height="100%"/>
+								<div class="img__item">
+									<img class="product__img" th:src="@{'data:image/jpeg;base64,'+${product.getImage().generateBase64Image()}}" height="100%"/>
 								</div>
-								<div class="description"  th:text="${product.additionallyInfo}"></div>
+								<div class="description" >
+									<div class="description__title" th:text="${product.name}">name</div>
+									<div class="description__price" th:text="${product.price + '₽'}">price</div>
+									<div class="description__btn">
+										<a th:href="@{/catalog/product/{id}(id=${product.getId()})}" class="btndesc">ПОДРОБНЕЕ О ТОВАРЕ</a>
+										<form th:method="POST" th:action="@{/add/{id}(id=${product.getId()})}">
+											<input type="submit" class="btndesc" value="ДОБАВИТЬ В КОРЗИНУ">
+										</form>
+										<form th:method="POST" th:action="@{/add/{id}(id=${product.getId()})}">
+											<input type="submit" class="btndesc" value="В ИЗБРАННОЕ">
+										</form>
+									</div>
+								</div>
 							</div>
 						</div>
 

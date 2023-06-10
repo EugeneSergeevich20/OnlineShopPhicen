@@ -50,4 +50,11 @@ public class Product {
     @OneToMany(mappedBy = "product")
     private List<Wishlist> wishlists;
 
+    public ImageProduct getImage(){
+        if (!imageProducts.isEmpty())
+            return imageProducts.get(0);
+        else
+            return null;
+    }
+
 }

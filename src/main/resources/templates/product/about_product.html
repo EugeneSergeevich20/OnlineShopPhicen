@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<title>подробнее о товаре</title>
+	<link rel="stylesheet" href="/css/aboutProduct.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+	<header>
+		<div class="header__container">
+			<div class="header-top">
+				<div class="header-top__items">
+					<div class="top__item">
+						<div class="linkvk">
+							<a href="">
+								<img class="imgvk" src="/img/vk.svg" alt="vk">
+							</a>
+						</div>
+					</div>
+					<div class="top__item">
+						<div class="linktg">
+							<a href="">
+								<img class="imgtg" src="/img/tg.svg" alt="tg">
+							</a>
+						</div>
+					</div>
+					<div class="top__item">
+						<div class="numberbackg">
+							<div class="number">+7 (999) 99-99</div>
+						</div>
+					</div>
+					<div class="item__write">
+						<div class="writebackg">
+							<a href="" class="write">напишите нам</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="header-bottom">
+				<div class="header-bottom__items">
+					<div class="bottom__item">
+						<a class="nav" th:href="@{/home}">ГЛАВНАЯ</a>
+					</div>
+					<div class="bottom__item">
+						<a class="nav" th:href="@{/catalog}">КАТАЛОГ</a>
+					</div>
+					<div class="bottom__item">
+						<a class="nav" href="">ОТЗЫВЫ</a>
+					</div>
+					<div class="bottom__item">
+						<a class="nav" href="">НОВОСТИ</a>
+					</div>
+					<div class="bottom__item">
+						<a class="nav" href="">НОВИНКИ</a>
+					</div>
+
+					<div class="bottom-img__item">
+						<div class="imgnav">
+							<a href="C:\Users\irive\OneDrive\Рабочий стол\dolls\login\login.html">
+								<img class="navimg" src="/img/account.svg" alt="">
+							</a>
+						</div>
+						<div class="imgnav">
+							<a href="">
+								<img class="navimg" src="/img/favourites.svg" alt="">
+							</a>
+						</div>
+						<div class="imgnav">
+							<a th:href="@{/cart}">
+								<img class="navimg" src="/img/cart.svg" alt="">
+							</a>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</header>
+	<div class="content">
+		<div class="content__container">
+			<div class="aboutproduct">
+				<div class="aboutproduct__text">
+					<div class="aboutproduct__title">
+						<div class="title" th:text="${product.name}">name</div>
+					</div>
+					<div class="aboutproduct__description">
+						<div class="description">
+							<div class="description__item">
+								<div class="sculpture">Скульпт:
+										<span class="sculpture__text" th:text="${product.sculpt}">sculpt</span>
+								</div>
+							</div>
+							<div class="description__item">
+								<div class="haircolor">Цвет волос:
+									<span class="haircolor__text" th:text="${product.hairColor}">hair color</span>
+								</div>
+							</div>
+							<div class="description__item">
+								<div class="bodytype">Тип тела:
+									<span class="bodytype__text" th:text="${product.bodyType}">body type</span>
+								</div>
+							</div>
+							<div class="description__item">
+								<div class="skinton">Скинтон:
+									<span class="skinton__text" th:text="${product.skinTone}">skin tone</span>
+								</div>
+							</div>
+							<div class="description__item">
+								<div class="circulation">Тираж:
+									<span class="circulation__text" th:text="${product.edition}"></span>
+								</div>
+							</div>
+							<div class="description__item">
+								<div class="additionalinformation">Дополнительная информация:
+									<span class="additionalinformation__text" th:text="${product.additionallyInfo}"></span>
+								</div>
+							</div>
+
+						</div>
+
+					</div>
+				</div>
+				<div class="aboutproduct__img" >
+
+					<div id="slider" >
+						<input type="radio" name="slider" id="slide0" checked>
+						<input type="radio" name="slider" id="slide1">
+						<input type="radio" name="slider" id="slide2">
+						<input type="radio" name="slider" id="slide3">
+						<div id="slides" >
+							<div id="overflow" >
+								<div class="inner" >
+									<div th:each="imageInfo : ${product.imageProducts}" th:class="${'slide slide_' + imageInfoStat.index}">
+										<div class="slide-content" >
+											<img class="imgsl" th:src="@{'data:image/jpeg;base64,'+${imageInfo.generateBase64Image()}}" alt="">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div id="controls">
+							<label for="slide0"></label>
+							<label for="slide1"></label>
+							<label for="slide2"></label>
+							<label for="slide3"></label>
+						</div>
+						<div id="bullets">
+							<label for="slide0"></label>
+							<label for="slide1"></label>
+							<label for="slide2"></label>
+							<label for="slide3"></label>
+						</div>
+					</div>
+
+				</div>
+			</div>
+</body>
+
+</html>

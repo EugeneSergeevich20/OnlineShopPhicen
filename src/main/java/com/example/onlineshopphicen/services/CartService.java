@@ -29,20 +29,10 @@ public class CartService {
         cartRepository.save(cart);
     }
 
-    /*@Transactional
-    public void addProductToCart(User user, Product product){
-        Cart cart;
-
-        *//*if (user.getCart() == null){
-            cart = new Cart();
-        }
-        else {
-            cart = user.getCart();
-        }*//*
-
+    @Transactional
+    public void addProductToCart(Cart cart, Product product){
         cart.addProduct(product);
-
         cartRepository.save(cart);
-    }*/
+    }
 
 }

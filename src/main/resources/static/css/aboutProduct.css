@@ -1,4 +1,4 @@
-/*Обнуление*/
+  /*Обнуление*/
 *{
 	padding: 0;
 	margin: 0;
@@ -29,6 +29,7 @@ ul li{list-style: none;}
 img{vertical-align: top;}
 h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
 /*--------------------*/
+
 ::-webkit-scrollbar{
 	width: 0;
 }
@@ -42,6 +43,9 @@ body{
 	overflow: hidden;
 	display: flex;
 	flex-direction: column;
+}
+header{
+	position: fixed;
 }
 .header__container{
 	background-color: rgb(252, 252, 252);
@@ -109,7 +113,7 @@ body{
 .header-bottom{
 	background-color: #ffffff;
 	height: 40px;
-
+	
 }
 .header-bottom__items{
 	display:flex;
@@ -153,110 +157,142 @@ body{
 .navimg{
 	height: 30px;
 	width: 30px;
-}
-.content{
+}.content{
 	margin: 130px 50px 0px 50px;
-	height: 2800px;
+	height: 700px;
 	display:flex;
 	flex-direction:column;
 	flex: 1 1 auto;
 }
-.catalog{
-	height: 700px;
-	margin: 50px 50px 0px 50px;
-	text-align: center;
-}
-
-.catalog__title{
-	font-size: 30px;
-	font-weight: 700;
-	text-transform: uppercase;
-	letter-spacing: 5px;
-	color: rgb(87,87,87);
-
-	padding: 10px 50px 10px 50px;
-}
-.catalog__columns{
-	height: 1150px;
-	margin: 0px 50px 0px 50px;
-}
-.columns{
+.content__container{
+	margin: 20px;
+	height: 500px;
 	display:flex;
-	flex-direction:row;
-	flex-wrap:wrap;
-	justify-content: center;
 }
-.columns__item{
-	background-color: #887b7b65;
-	border-radius: 35px;
-	height: 600px;
-	width: 340px;
-	margin: 50px 25px 20px 35px;
-	display:flex;
-	flex-direction: column;
-}
-.title__item{
-	font-size: 18px;
-	font-weight: 600;
-	text-transform: uppercase;
-	letter-spacing: 2px;
-	color: rgb(0, 0, 0);
+.aboutproduct{
 
-	padding: 15px 50px 10px 50px;
-}
-.img__item{
-	height: 320px;
-	width: 220px;
-	margin: 15px 0px 0px 60px;
-}
-.product__img{
-	border-radius: 10px;
-	height: 100%;
+	border-radius: 20px;
+	height: 570px;
 	width: 100%;
+	display:flex;
+	flex-direction: row;
+
+}
+.aboutproduct__text{
+	background-color: #ffffff5d;
+	border-radius: 20px;
+	flex: 0 0 400px;
+	margin: 20px 0px 20px 120px;
+}
+.aboutproduct__title{
+
+	border-radius: 20px;
+	height: 50px;
+	width: 400px;
+	margin: 20px 30px;
+
+}
+.title{
+	height: 50px;
+	margin: 20px 30px;
+	text-align: center;
+	align-items: center;
+	color: black;
+	font-size: 30px;
+
+}
+.aboutproduct__description{
+	border-radius: 40px;
+	height: 450px;
+	margin: 0px 30px ;
+
 }
 .description{
-	height: 200px;
-	width: 220px;
-	margin: 20px 0px 0px 60px;
-	display: flex;flex-direction: column;
-}
-.description__title{
+	margin: 20px 30px;
+	text-align: start;
+	align-items: center;
+	color: black;
 	font-size: 20px;
+	
 }
-.description__price{
-	font-size: 20px;
-	margin: 20px 10px 0px 10px;
-	text-align: center;
-	color: #000;
+.description__item{
+	padding: 15px;
 }
-.description__btn{
-	margin: 20px 10px 30px 10px;
+.item__text{
+	padding: 5px;
+}
+.aboutproduct__img{
 	display: flex;
-	flex-direction: column;
-}
-.btndesc{
-	font-size: 10px;
-	margin: 5px 10px 10px 10px;
-	padding: 10px;
-	border-radius: 20px;
-	background-color: rgb(212, 209, 244, 0.8);
-}
-.btndesc:hover{
-	background-color: rgba(255, 255, 255, 0.705);
-}
-.btndesc:any-link{
-	color: #000000;
-}
+	justify-content: center;
+	flex: 0 0 800px;
 
-.footer{
-	background-color: #5e5a5a8f;
-	height: 400px;
-	display:flex;
+	border-radius: 20px;
+	margin: 20px 30px 20px 20px;
+
+}
+#slider {
+   width: 400px;
+	height: 500px;
+   max-width: 100%;
+   text-align: center;
 	justify-content: center;
 }
-.footer__container{
-	background-color: #8d7e7e;
-	height: 300px;
-	width: 1400px;
-	margin: 50px 0px 0px 0px ;
+#slider input[type=radio] {
+   display: none;
+}
+#slider label {
+   cursor:pointer;
+   text-decoration: none;
+}
+#slides {
+	padding: 0px 30px 0px 30px;
+	margin: 10px;
+
+}
+#overflow {
+   width: 100%;
+   overflow: hidden;
+
+}
+
+/* управляет выводом картинок */
+#slide0:checked ~ #slides .inner {
+   margin-left: 0;
+}
+#slide1:checked ~ #slides .inner {
+   margin-left: -100%;
+}
+#slide2:checked ~ #slides .inner {
+   margin-left: -200%;
+}
+#slide3:checked ~ #slides .inner {
+   margin-left: -300%;
+}
+/* -------------------------------- */
+#slides .inner {
+   transition: margin-left 800ms cubic-bezier(0.770, 0.000, 0.175, 1.000);
+   width: 400%;
+   line-height: 0;
+   height: 400px;
+}
+#slides .slide {
+   width: 25%;
+   float:left;
+   display: flex;
+
+}
+#bullets label {
+   display: inline-block;
+   width: 10px;
+   height: 10px;
+   border-radius:100%;
+   background: #252425b9;
+   margin: 0 10px;
+}
+#bullets label:hover{
+   background: #ba72c2b9;
+}
+.imgsl{
+	height: 100%;
+	width: 100%;
 }
