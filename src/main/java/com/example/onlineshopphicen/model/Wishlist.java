@@ -29,4 +29,9 @@ public class Wishlist {
             inverseJoinColumns = @JoinColumn(name = "product_id"))
     private Set<Product> products;
 
+
+    /*public void addProduct(Product product){
+        this.products.add(product);
+    }*/
+
 }

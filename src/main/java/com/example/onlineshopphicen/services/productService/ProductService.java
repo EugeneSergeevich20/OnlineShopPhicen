@@ -25,6 +25,7 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
+    @Transactional
     public List<Product> findAllProducts(){
         return productRepository.findAll();
     }

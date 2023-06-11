@@ -106,10 +106,10 @@
 									<div class="description__price" th:text="${product.price + '₽'}">price</div>
 									<div class="description__btn">
 										<a th:href="@{/catalog/product/{id}(id=${product.getId()})}" class="btndesc">ПОДРОБНЕЕ О ТОВАРЕ</a>
-										<form th:method="POST" th:action="@{/add/{id}(id=${product.getId()})}">
+										<form th:method="POST" th:action="@{/addCart/{idProduct}(idProduct=${product.getId()})}">
 											<input type="submit" class="btndesc" value="ДОБАВИТЬ В КОРЗИНУ">
 										</form>
-										<form th:method="POST" th:action="@{/add/{id}(id=${product.getId()})}">
+										<form th:method="POST" th:action="@{/addWishlist/{id}(id=${product.getId()})}">
 											<input type="submit" class="btndesc" value="В ИЗБРАННОЕ">
 										</form>
 									</div>

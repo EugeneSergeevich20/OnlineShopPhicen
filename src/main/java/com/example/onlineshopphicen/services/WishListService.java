@@ -1,6 +1,7 @@
 package com.example.onlineshopphicen.services;
 
 import com.example.onlineshopphicen.model.Cart;
+import com.example.onlineshopphicen.model.Product;
 import com.example.onlineshopphicen.model.User;
 import com.example.onlineshopphicen.model.Wishlist;
 import com.example.onlineshopphicen.repositories.WishListRepository;
@@ -25,6 +26,12 @@ public class WishListService {
                 .user(user)
                 .products(new HashSet<>())
                 .build();
+        wishListRepository.save(wishlist);
+    }
+
+    @Transactional
+    public void addProduct(Wishlist wishlist, Product product){
+        wishlist.getProducts().add(product);
         wishListRepository.save(wishlist);
     }
 

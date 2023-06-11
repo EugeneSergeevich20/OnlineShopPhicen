@@ -3,6 +3,7 @@ package com.example.onlineshopphicen.controller.productController;
 import com.example.onlineshopphicen.model.Product;
 import com.example.onlineshopphicen.services.CartService;
 import com.example.onlineshopphicen.services.productService.ProductService;
+import com.example.onlineshopphicen.services.usersService.UserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -20,11 +21,13 @@ import java.util.stream.IntStream;
 public class ProductController {
 
     private final ProductService productService;
+    private final UserDetailsService userDetailsService;
     private final CartService cartService;
 
     @Autowired
-    public ProductController(ProductService productService, CartService cartService) {
+    public ProductController(ProductService productService, UserDetailsService userDetailsService, CartService cartService) {
         this.productService = productService;
+        this.userDetailsService = userDetailsService;
         this.cartService = cartService;
     }
 
@@ -40,6 +43,7 @@ public class ProductController {
 
         //model.addAttribute("products", productService.findAllProducts());
         model.addAttribute("products", productPage);
+        model.addAttribute("userAuth", userDetailsService.getAuthUser());
 
         int totalPages = productPage.getTotalPages();
         if (totalPages > 0){

@@ -94,7 +94,8 @@
     <div class="content__container">
         <div class="adminpage">
             <div class="backgtitle">
-                <div class="page__title">Все пользователи:</div>
+                <div class="page__title">Все товары:</div>
+                <a>Добавить товар</a>
             </div>
 
             <div class="backgtable">
@@ -106,7 +107,7 @@
                         <td>Цена</td>
                         <td>Колличество</td>
                         <td>Фото</td>
-                        <td>Удвлить</td>
+                        <td>Удалить</td>
                     </tr>
                     <tr th:each="product : ${products}">
                         <td th:text="${product.name}"></td>
