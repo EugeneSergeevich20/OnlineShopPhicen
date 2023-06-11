@@ -6,8 +6,8 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="format-detection" content="telephone=no">
-	<title>Mizi JHDtoys: избранное</title>
-	<link rel="stylesheet" href="/css/wishlist.css">
+	<title>Mizi JHDtoys: добавление товара</title>
+	<link rel="stylesheet" href="/css/addproduct.css">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
@@ -92,28 +92,49 @@
 </header>
 	<div class="content">
 		<div class="content__container">
-			<div class="cart">
-				<div class="cart__title">ИЗБРАННОЕ</div>
-				<div class="columns__item">
-					<div class="item__product"th:each="product : ${wishlist.products}">
-						<div class="img__item" >
-							<img class="product__img"  th:src="@{'data:image/jpeg;base64,'+${product.getImage().generateBase64Image()}}" alt="">
-						</div>
-						<div class="description">
-							<div class="description__title" th:text="${product.name}">name</div>
-							<div class="description__price" th:text="${product.price + ' ₽'}">price</div>
-						</div>
-						<div class="cross">
-							<div class="x">
-								<form th:method="DELETE" th:action="@{/deleteWishlist/{id}(id=${product.getId()})}">
-									<input class="inputx" type="submit" value="x">
-								</form>
-							</div>
-						</div>
+			<div class="addproduct__title">ДОБАВЛЕНИЕ ТОВАРА</div>
+			<form th:method="POST" th:action="@{/manager/products}" th:object="${product}" enctype="multipart/form-data">
+			<div class="addproduct">
+				<div class="description">
+					<div class="dtitle">Описание:</div>
+					<div class="addproduct__name">
+						<input placeholder="наименование товара" type="text" name="" th:field="*{name}">
+					</div>
+					<div class="addproduct__sculpture">
+						<input placeholder="скульпт" type="text" name="" id="" th:field="*{sculpt}">
+					</div>
+					<div class="addproduct__haircolor">
+						<input placeholder="цвет волос" type="text" name="" th:field="*{hairColor}">
+					</div>
+					<div class="addproduct__bodytype">
+						<input placeholder="тип тела" type="text" name="" th:field="*{bodyType}">
+					</div>
+					<div class="addproduct__skinton">
+						<input placeholder="скинтон" type="text" name="" th:field="*{skinTone}">
+					</div>
+					<div class="addproduct__circulation">
+						<input placeholder="тираж" type="text" name="" th:field="*{edition}">
+					</div>
+					<div class="addproduct__additionalinformation">
+						<input placeholder="доп информация" type="text" name="" th:field="*{additionallyInfo}">
+					</div>
+					<div class="addproduct__price">
+						<input placeholder="цена" type="text" name="" th:field="*{price}">
 					</div>
 				</div>
-
+				<div class="photo">
+					<div class="addproduct__photo">
+						<div class="ptitle">Добавить фото:</div>
+						<input type="file" name="image" accept="image/*" multiple="multiple">
+					</div>
+				</div>
 			</div>
+			<div class="addproduct__btn">
+				<input class="btn__addproduct" type="submit" value="ДОБАВИТЬ ТОВАР">
+			</div>
+			</form>>
 		</div>
 	</div>
 </body>
+
+</html>

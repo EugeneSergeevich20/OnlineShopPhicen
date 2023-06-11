@@ -29,11 +29,11 @@ public class Order {
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
     @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id ")
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
-    @OneToMany(mappedBy = "order")
-    private List<OrderDetails> orderDetails;
+    @OneToOne(mappedBy = "order")
+    private OrderDetails orderDetail;
 
 
 }

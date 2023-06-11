@@ -103,7 +103,7 @@
 								</div>
 								<div class="description" >
 									<div class="description__title" th:text="${product.name}">name</div>
-									<div class="description__price" th:text="${product.price + '₽'}">price</div>
+									<div class="description__price" th:text="${product.price + ' ₽'}">price</div>
 									<div class="description__btn">
 										<a th:href="@{/catalog/product/{id}(id=${product.getId()})}" class="btndesc">ПОДРОБНЕЕ О ТОВАРЕ</a>
 										<form th:method="POST" th:action="@{/addCart/{idProduct}(idProduct=${product.getId()})}">

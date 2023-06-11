@@ -10,7 +10,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -19,10 +21,12 @@ import java.util.Optional;
 public class ProductService {
 
     private final ProductRepository productRepository;
+    private final ImageService imageService;
 
     @Autowired
-    public ProductService(ProductRepository productRepository) {
+    public ProductService(ProductRepository productRepository, ImageService imageService) {
         this.productRepository = productRepository;
+        this.imageService = imageService;
     }
 
     @Transactional
@@ -60,8 +64,9 @@ public class ProductService {
 
     @PreAuthorize("hasRole('ROLE_MANAGER')")
     @Transactional
-    public void addProduct(Product product){
+    public void addProduct(Product product, List<MultipartFile> files) throws IOException {
         productRepository.save(product);
+        imageService.save(files, product);
     }
 
     @PreAuthorize("hasRole('ROLE_MANAGER')")

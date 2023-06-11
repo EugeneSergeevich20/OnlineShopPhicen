@@ -42,7 +42,7 @@ public class Product {
     @JoinColumn(name = "category_id", referencedColumnName = "id")
     private Category category;
 
-    @OneToMany(mappedBy = "product")
+    @ManyToMany(mappedBy = "products")
     private List<OrderDetails> orderDetails;
 
     @ManyToMany(mappedBy = "products")

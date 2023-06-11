@@ -36,14 +36,14 @@ public class ManagerController {
     }
 
     @GetMapping("/product/add")
-    public String addProduct(@ModelAttribute("product")Product product, Model model){
+    public String addProduct(@ModelAttribute("product")Product product, Model model, @ModelAttribute("image") List<MultipartFile> image){
         model.addAttribute("userAuth", userDetailsService.getAuthUser());
-        return "/product/manager/add";
+        return "/product/manager/add_product";
     }
 
     @PostMapping("/products")
-    public String saveProduct(@ModelAttribute("product") Product product) {
-        productService.addProduct(product);
+    public String saveProduct(@ModelAttribute("product") Product product, @RequestParam("image") List<MultipartFile> image) throws IOException {
+        productService.addProduct(product, image);
         return "redirect:/manager/products";
     }
 

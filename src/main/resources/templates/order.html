@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div th:each="product : ${products.products}">
+    <p th:text="${product.name}"></p>
+    <p th:text="${product.price}"></p>
+</div>
+
+Итого: <p th:text="${products.getTotalPrice()}"></p>
+
+<form th:method="POST" th:action="@{/order/createOrder/{id}(id=${userAuth.getId()})}" th:object="${order}">
+    <input type="text" th:field="*{address}">
+    <input type="submit" value="Create">
+</form>
+</body>
+</html>

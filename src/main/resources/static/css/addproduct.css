@@ -155,63 +155,81 @@ body{
 	height: 30px;
 	width: 30px;
 }
-.footer{
-	background-color: #5e5a5a8f;
-	height: 400px;
-	display:flex;
-	justify-content: center;
-}
-.footer__container{
-	background-color: #8d7e7e;
-	height: 300px;
-	width: 1400px;
-	margin: 50px 0px 0px 0px ;
-}
 .content{
 	margin: 130px 50px 0px 50px;
-	height: 2800px;
+	height: 1200px;
 	display:flex;
 	flex-direction:column;
 	flex: 1 1 auto;
 }
-.page__title{
-	font-size: 20px;
-}
-.backgtitle{
+.addproduct{
+
+	margin: 20px 20px;
+	height: 450px;
 	display: flex;
-	display: inline-flex;
-	padding: 13px;
-	margin: 0px 0px 20px 0px;
+	flex-direction: row;
 }
-.backgtable{
-	margin: 0px 0px 30px 10px;
-	background-color: #fff;
-}
-.table{
-	width: 100%;
-	border-collapse:collapse;
-	border-spacing:0;
-	height: auto;
-}
-.table td,.table th {
-	width: 0px;
-	height: 35px;
-	border: 2px solid #000000;
+.addproduct__title{
+	text-align: center;
 	padding: 10px;
-}
-.btn{
-	margin: 1px;
-	background-color: white;
-}
-.btntext{
-	font-size: 12px;
+	font-size: 20px;
+	font-weight: 700;
 }
 
-.addproduct{
-	width: 200px;
-	text-align: center;
-	background-color: #fff;
-	margin: 10px 0px 0px 10px;
+.description{
+
+	height: 410px;
+	width: 500px;
+}
+.addproduct__name{
+	margin: 10px;
+
+}
+.addproduct__sculpture{
+	margin: 10px;
+}
+.addproduct__haircolor{
+	margin: 10px;
+}
+.addproduct__bodytype{
+	margin: 10px;
+}
+.addproduct__skinton{
+	margin: 10px;
+}
+.addproduct__circulation{
+	margin: 10px;
+}
+.addproduct__additionalinformation{
+	margin: 10px;
+}
+.addproduct__price{
+	margin: 10px;
+}
+input{
 	padding: 10px;
+	height: 40px;
+	width: 300px;
 	border-radius: 20px;
+}
+.photo{
+	height: 410px;
+	width: 500px;
+}
+.ptitle{
+	margin: 10px;
+	font-size: 20px;
+}
+.dtitle{
+	margin: 10px;
+	font-size: 20px;
+}
+.addproduct__btn{
+	margin: 20px 30px;
+
+}
+.btn__addproduct{
+	font-weight: 700;
+	background-color: #ac6ac080;
+	cursor: pointer;
 }

@@ -101,7 +101,7 @@
 						</div>
 						<div class="description">
 							<div class="description__title" th:text="${product.name}">name</div>
-							<div class="description__price" th:text="${product.price}">price</div>
+							<div class="description__price" th:text="${product.price + ' ₽'}">price</div>
 						</div>
 						<div class="cross">
 							<div class="x">
@@ -116,11 +116,11 @@
 			</div>
 			<div class="sum">
 				<div class="sum__total">ИТОГО:
-					<span class="total" th:text="${cart.getTotalPrice()}">total price</span>
+					<span class="total" th:text="${cart.getTotalPrice() + ' ₽'}">total price</span>
 				</div>
 			</div>
 			<div class="order">
-				<a href="" class="placeanorder__btn">ОФОРМИТЬ ЗАКАЗ</a>
+				<a th:href="@{/order}" class="placeanorder__btn">ОФОРМИТЬ ЗАКАЗ</a>
 			</div>
 		</div>
 	</div>
