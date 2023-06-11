@@ -12,10 +12,16 @@
   <tr>
     <td>Наименование товара</td>
     <td>Цена товара</td>
+    <td>Удвлить</td>
   </tr>
   <tr th:each="product : ${wishlist.products}">
     <td th:text="${product.name}"></td>
     <td th:text="${product.price}"></td>
+    <td>
+    <form th:method="DELETE" th:action="@{/deleteWishlist/{id}(id=${product.getId()})}">
+      <input type="submit" value="DELETE">
+    </form>
+    </td>
   </tr>
   </tbody>
 </table>

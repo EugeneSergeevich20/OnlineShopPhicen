@@ -6,8 +6,8 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="format-detection" content="telephone=no">
-	<title>Mizi JHDtoys: корзина</title>
-	<link rel="stylesheet" href="/css/cart.css">
+	<title>Mizi JHDtoys: избранное</title>
+	<link rel="stylesheet" href="/css/wishlist.css">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
@@ -93,11 +93,11 @@
 	<div class="content">
 		<div class="content__container">
 			<div class="cart">
-				<div class="cart__title">КОРЗИНА</div>
+				<div class="cart__title">ИЗБРАННОЕ</div>
 				<div class="columns__item">
-					<div class="item__product" th:each="product : ${cart.products}">
-						<div class="img__item">
-							<img class="product__img" th:src="@{'data:image/jpeg;base64,'+${product.getImage().generateBase64Image()}}" alt="">
+					<div class="item__product"th:each="product : ${wishlist.products}">
+						<div class="img__item" >
+							<img class="product__img"  th:src="@{'data:image/jpeg;base64,'+${product.getImage().generateBase64Image()}}" alt="">
 						</div>
 						<div class="description">
 							<div class="description__title" th:text="${product.name}">name</div>
@@ -105,25 +105,15 @@
 						</div>
 						<div class="cross">
 							<div class="x">
-								<form th:method="DELETE" th:action="@{/deleteCart/{id}(id=${product.getId()})}">
+								<form th:method="DELETE" th:action="@{/deleteWishlist/{id}(id=${product.getId()})}">
 									<input class="inputx" type="submit" value="x">
 								</form>
-
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="sum">
-				<div class="sum__total">ИТОГО:
-					<span class="total" th:text="${cart.getTotalPrice()}">total price</span>
-				</div>
-			</div>
-			<div class="order">
-				<a href="" class="placeanorder__btn">ОФОРМИТЬ ЗАКАЗ</a>
+
 			</div>
 		</div>
 	</div>
 </body>
-
-</html>

@@ -23,11 +23,11 @@ public class Wishlist {
     @OneToOne
     @JoinColumn(name = "user_id",referencedColumnName = "id")
     private User user;
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany
     @JoinTable(name = "wish_list_products",
             joinColumns = @JoinColumn(name = "wish_list_id"),
             inverseJoinColumns = @JoinColumn(name = "product_id"))
-    private Set<Product> products;
+    private List<Product> products;
 
 
     /*public void addProduct(Product product){

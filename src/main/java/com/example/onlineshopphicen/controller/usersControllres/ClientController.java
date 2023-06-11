@@ -3,6 +3,7 @@ package com.example.onlineshopphicen.controller.usersControllres;
 import com.example.onlineshopphicen.model.Cart;
 import com.example.onlineshopphicen.model.Product;
 import com.example.onlineshopphicen.model.User;
+import com.example.onlineshopphicen.model.Wishlist;
 import com.example.onlineshopphicen.services.CartService;
 import com.example.onlineshopphicen.services.WishListService;
 import com.example.onlineshopphicen.services.productService.ProductService;
@@ -58,18 +59,30 @@ public class ClientController {
         return "account";
     }
 
-    @GetMapping("/favorites")
+    @GetMapping("/wishlist")
     public String getFavoritesPage(Model model){
-        model.addAttribute("wishlist", userDetailsService.getUserWishList());
-        return "favorites";
+
+        User user = userDetailsService.getAuthUser();
+        Wishlist wishlist = wishListService.findId(user.getCart().getId());
+        model.addAttribute("userAuth", userDetailsService.getAuthUser());
+
+        model.addAttribute("wishlist", wishlist);
+        return "wishlist";
     }
 
     @PostMapping("/addWishlist/{id}")
     public String addProductToWishList(@PathVariable Long id){
-        Product product = productService.findProductById(id);
-        wishListService.addProduct(userDetailsService.getUserWishList(), product);
+        Wishlist wishlist = wishListService.findByUser(userDetailsService.getAuthUser());
+        wishListService.addProduct(wishlist, id);
         return "redirect:/catalog";
     }
 
+    @DeleteMapping("/deleteWishlist/{id}")
+    public String deleteProductWishlist(@PathVariable Long id){
+        Product product = productService.findProductById(id);
+        Wishlist wishlist = wishListService.findByUser(userDetailsService.getAuthUser());
+        wishListService.deleteProduct(wishlist, product);
+        return "redirect:/wishlist";
+    }
 
 }
