@@ -70,7 +70,7 @@
 								</a>
 							</div>
 							<div class="imgnav" th:if="${userAuth != null}">
-								<a th:href="@{/account}"> <!--поменять на адрес профиля-->
+								<a th:href="@{/account/{id}(id=${userAuth.getId()})}"> <!--поменять на адрес профиля-->
 									<img class="navimg" src="/img/account.svg" alt="">
 								</a>
 							</div>

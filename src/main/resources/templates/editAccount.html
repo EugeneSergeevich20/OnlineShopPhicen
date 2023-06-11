@@ -6,8 +6,8 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="format-detection" content="telephone=no">
-	<title>ДЛЯ АДМИНА</title>
-	<link rel="stylesheet" href="/css/styleAdmin.css">
+	<title>Mizi JHDtoys: edit account</title>
+	<link rel="stylesheet" href="/css/editAccount.css">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
@@ -90,72 +90,49 @@
 
 	</div>
 </header>
-
 	<div class="content">
 		<div class="content__container">
-			<div class="adminpage">
-				<div class="backgtitle">
-					<div class="page__title">Все пользователи:</div>
-				</div>
+			<div class="myaccount">
 
-				<div class="backgtable">
-					<table class="table" >
-						<tbody>
-							<tr>
-								<td>РОЛЬ</td>
-								<td>ЛОГИН</td>
-								<td>ИМЯ</td>
-								<td>ФАМИЛИЯ</td>
-								<td>ПОЧТА</td>
-								<td>ТЕЛЕФОН</td>
-								<td>ИЗМЕНИТЬ РОЛЬ</td>
-							</tr>
-							<tr th:each="user : ${users}">
-								<td th:text="${user.role.displayValue}"></td>
-								<td th:text="${user.username}"></td>
-								<td th:text="${user.name}"></td>
-								<td th:text="${user.surname}"></td>
-								<td th:text="${user.email}"></td>
-								<td th:text="${user.phone}"></td>
-								<td>
-									<form th:method="GET" th:action="@{/admin/user/{id}/edit(id=${user.getId()})}">
-									<button type="submit" class="btn">
-										<div class="btntext">ИЗМЕНИТЬ РОЛЬ</div>
-									</button>
-									</form>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
+				<div class="myaccount__title">РЕДАКТИРОВАНИЕ АККАУНТА</div>
 
+				<div class="myaccount__field">
+					<div class="info">
+						<form th:method="PATCH" th:action="@{/account/edit/{id}(id=${user.getId()})}" th:object="${user}">
+						<div class="info__item">
+							<div class="myaccount__name">Имя:
+								<span class="inputedit1"><input type="text" class="info__edit" th:field="*{name}"></span>
+							</div>
+						</div>
+						<div class="info__item">
+							<div class="myaccount__surname">Фамилия:
+								<span class="inputedit2"><input type="text" class="info__edit" th:field="*{surname}"></span>
+							</div>
+						</div>
+						<div class="info__item">
+							<div class="myaccount__mail">Почта:
+								<span class="inputedit3"><input type="text" class="info__edit" th:field="*{email}"></span>
+							</div>
+						</div>
+						<div class="info__item">
+							<div class="myaccount__tel">Телефон:
+								<span class="inputedit4"><input type="text" class="info__edit" th:field="*{phone}"></span>
+							</div>
+						</div>
+						<div class="btnedit">
+								<input class="editinput" type="submit" value="ИЗМЕНИТЬ">
+						</div>
+						<div class="cross">
+
+						</div>
+						</form>
+
+					</div>
+
+				</div>
 			</div>
-
-
-
-
-
-
-
 		</div>
 	</div>
-
-
-
-
-
-
-
-
-
-
-
-	<!-- <footer class="footer">
-		<div class="footer__container">
-
-		</div>
-
-	</footer> -->
 </body>
 
 </html>

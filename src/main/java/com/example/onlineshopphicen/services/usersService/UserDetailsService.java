@@ -44,6 +44,9 @@ public class UserDetailsService implements org.springframework.security.core.use
         return new UserDetailsImpl(user.get());
     }
 
+    public User findById(Long id){
+        return userRepository.findById(id).get();
+    }
 
     public User getAuthUser(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -61,18 +64,12 @@ public class UserDetailsService implements org.springframework.security.core.use
         return userDerails.getUser();
     }
 
-    @Transactional
-    public Cart getUserCart(){
-        Session session = entityManager.unwrap(Session.class);
-        User user = getAuthUser();
-        Hibernate.initialize(user.getCart().getProducts());
-        Cart cart = user.getCart();
-        session.close();
-        return cart;
-    }
-
-    public Wishlist getUserWishList(){
-        User user = getAuthUser();
-        return user.getWishlist();
+    public void updateUser(Long id, User userUpdate){
+        User user = userRepository.findById(id).get();
+        user.setName(userUpdate.getName());
+        user.setSurname(userUpdate.getSurname());
+        user.setEmail(userUpdate.getEmail());
+        user.setPhone(userUpdate.getPhone());
+        userRepository.save(user);
     }
 }

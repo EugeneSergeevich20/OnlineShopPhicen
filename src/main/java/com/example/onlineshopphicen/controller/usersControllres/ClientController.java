@@ -53,11 +53,7 @@ public class ClientController {
         return "redirect:/cart";
     }
 
-    @GetMapping("/account")
-    public String account(Model model){
-        model.addAttribute("account", userDetailsService.getAuthUser());
-        return "account";
-    }
+
 
     @GetMapping("/wishlist")
     public String getFavoritesPage(Model model){
@@ -83,6 +79,26 @@ public class ClientController {
         Wishlist wishlist = wishListService.findByUser(userDetailsService.getAuthUser());
         wishListService.deleteProduct(wishlist, product);
         return "redirect:/wishlist";
+    }
+
+    @GetMapping("/account/{id}")
+    public String account(Model model, @PathVariable Long id){
+
+        model.addAttribute("userAuth", userDetailsService.getAuthUser());
+        model.addAttribute("account", userDetailsService.findById(id));
+        return "account";
+    }
+
+    @GetMapping("/account/edit/{id}")
+    private String editAccount(@PathVariable Long id, Model model){
+        model.addAttribute("user", userDetailsService.findById(id));
+        return "editAccount";
+    }
+
+    @PatchMapping("/account/edit/{id}")
+    private String updateInfoUser(@PathVariable Long id, @ModelAttribute("user") User user){
+        userDetailsService.updateUser(id, user);
+        return "redirect:/account/" + id ;
     }
 
 }

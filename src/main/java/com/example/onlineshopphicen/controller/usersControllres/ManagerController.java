@@ -3,6 +3,7 @@ package com.example.onlineshopphicen.controller.usersControllres;
 import com.example.onlineshopphicen.model.Product;
 import com.example.onlineshopphicen.services.productService.ImageService;
 import com.example.onlineshopphicen.services.productService.ProductService;
+import com.example.onlineshopphicen.services.usersService.UserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,21 +19,25 @@ public class ManagerController {
 
     private final ProductService productService;
     private final ImageService imageService;
+    private final UserDetailsService userDetailsService;
 
     @Autowired
-    public ManagerController(ProductService productService, ImageService imageService) {
+    public ManagerController(ProductService productService, ImageService imageService, UserDetailsService userDetailsService) {
         this.productService = productService;
         this.imageService = imageService;
+        this.userDetailsService = userDetailsService;
     }
 
     @GetMapping("/products")
     public String showAllProducts(Model model){
         model.addAttribute("products", productService.findAllProducts());
+        model.addAttribute("userAuth", userDetailsService.getAuthUser());
         return "/product/manager/show_all_products";
     }
 
     @GetMapping("/product/add")
-    public String addProduct(@ModelAttribute("product")Product product){
+    public String addProduct(@ModelAttribute("product")Product product, Model model){
+        model.addAttribute("userAuth", userDetailsService.getAuthUser());
         return "/product/manager/add";
     }
 
@@ -47,6 +52,7 @@ public class ManagerController {
 
         Product product = productService.findProductById(id);
         model.addAttribute("product", product);
+        model.addAttribute("userAuth", userDetailsService.getAuthUser());
         return "/product/manager/show_info_product";
     }
 

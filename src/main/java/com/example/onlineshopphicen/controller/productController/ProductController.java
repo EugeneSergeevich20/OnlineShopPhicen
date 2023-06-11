@@ -58,6 +58,7 @@ public class ProductController {
 
     @GetMapping("/product/{id}")
     public String getProduct(@PathVariable Long id, Model model){
+        model.addAttribute("userAuth", userDetailsService.getAuthUser());
         model.addAttribute("product", productService.findProductById(id));
         return "/product/about_product";
     }
