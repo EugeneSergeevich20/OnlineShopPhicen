@@ -9,6 +9,7 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Data
@@ -28,6 +29,8 @@ public class Order {
     private String address;
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
+    @Enumerated(EnumType.STRING)
+    private DeliveryMethod deliveryMethod;
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
@@ -35,5 +38,8 @@ public class Order {
     @OneToOne(mappedBy = "order")
     private OrderDetails orderDetail;
 
+    public String getDateOrder(){
+        return this.orderDate.format(DateTimeFormatter.ISO_LOCAL_DATE);
+    }
 
 }

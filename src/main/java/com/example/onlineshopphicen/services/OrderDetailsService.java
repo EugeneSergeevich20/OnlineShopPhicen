@@ -35,6 +35,7 @@ public class OrderDetailsService {
             orderDetails.getProducts().add(product);
         }
 
+
         BigDecimal totalPrice = BigDecimal.valueOf(orderDetails.getTotalPrice());
 
         order.setOrderTotal(totalPrice);

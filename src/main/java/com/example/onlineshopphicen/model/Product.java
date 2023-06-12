@@ -38,10 +38,6 @@ public class Product {
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private List<ImageProduct> imageProducts;
 
-    @ManyToOne
-    @JoinColumn(name = "category_id", referencedColumnName = "id")
-    private Category category;
-
     @ManyToMany(mappedBy = "products")
     private List<OrderDetails> orderDetails;
 

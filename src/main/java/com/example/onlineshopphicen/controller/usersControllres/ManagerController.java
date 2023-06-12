@@ -1,6 +1,9 @@
 package com.example.onlineshopphicen.controller.usersControllres;
 
+import com.example.onlineshopphicen.model.Order;
+import com.example.onlineshopphicen.model.OrderStatus;
 import com.example.onlineshopphicen.model.Product;
+import com.example.onlineshopphicen.services.OrderService;
 import com.example.onlineshopphicen.services.productService.ImageService;
 import com.example.onlineshopphicen.services.productService.ProductService;
 import com.example.onlineshopphicen.services.usersService.UserDetailsService;
@@ -20,12 +23,14 @@ public class ManagerController {
     private final ProductService productService;
     private final ImageService imageService;
     private final UserDetailsService userDetailsService;
+    private final OrderService orderService;
 
     @Autowired
-    public ManagerController(ProductService productService, ImageService imageService, UserDetailsService userDetailsService) {
+    public ManagerController(ProductService productService, ImageService imageService, UserDetailsService userDetailsService, OrderService orderService) {
         this.productService = productService;
         this.imageService = imageService;
         this.userDetailsService = userDetailsService;
+        this.orderService = orderService;
     }
 
     @GetMapping("/products")
@@ -67,6 +72,27 @@ public class ManagerController {
     public String deleteProduct(@PathVariable("id") Long id){
         productService.delete(id);
         return "redirect:/manager/products";
+    }
+
+    @GetMapping("/orders")
+    public String showAllOrders(Model model, @ModelAttribute("orderStatus") Order order){
+        List<Order> orders = orderService.findAll();
+        model.addAttribute("orders", orders);
+        model.addAttribute("userAuth", userDetailsService.getAuthUser());
+        model.addAttribute("statusOrder", OrderStatus.values());
+        return "/product/manager/show_all_orders";
+    }
+
+    @PatchMapping("/orders/status/{id}")
+    public String updateStatus(@PathVariable Long id, @ModelAttribute("orderStatus") Order order){
+        orderService.updateStatus(order, id);
+        return "redirect:/manager/orders";
+    }
+
+    @GetMapping("/action")
+    public String managerPage(Model model){
+        model.addAttribute("userAuth", userDetailsService.getAuthUser());
+        return "/product/manager/manager";
     }
 
 }

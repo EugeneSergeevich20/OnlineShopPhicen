@@ -1,6 +1,7 @@
 package com.example.onlineshopphicen.controller.productController;
 
 import com.example.onlineshopphicen.model.Cart;
+import com.example.onlineshopphicen.model.DeliveryMethod;
 import com.example.onlineshopphicen.model.Order;
 import com.example.onlineshopphicen.model.User;
 import com.example.onlineshopphicen.services.CartService;
@@ -33,6 +34,7 @@ public class OrderController {
         Cart cart = cartService.findId(user.getCart().getId());
         model.addAttribute("userAuth", userDetailsService.getAuthUser());
         model.addAttribute("products", cart);
+        model.addAttribute("delivery", DeliveryMethod.values());
         return "order";
     }
 

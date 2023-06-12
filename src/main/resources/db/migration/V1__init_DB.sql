@@ -10,12 +10,6 @@ create table carts_products
     carts_id   bigint not null,
     product_id bigint not null
 );
-create table categories
-(
-    id   bigserial not null,
-    name varchar(255),
-    primary key (id)
-);
 
 create table image_product
 (
@@ -41,7 +35,8 @@ create table orders
     order_date  timestamp(6),
     user_id     bigint,
     address     varchar(255),
-    status      varchar(255) check (status in ('NEW', 'APPROVED', 'CANCEL', 'PAID', 'CLOSED')),
+    status      varchar(255) check (status in ('NEW', 'APPROVED', 'CANCEL', 'PAID', 'SENT', 'CLOSED')),
+    delivery_method      varchar(255) check (delivery_method in ('CDEK', 'POST_RUSSIAN')),
     primary key (id)
 );
 create table orders_details
@@ -54,7 +49,6 @@ create table products
 (
     price       numeric(38, 2),
     quantity    integer   not null,
-    category_id bigint,
     id          bigserial not null,
     sculpt      varchar(255),
     hair_color   varchar(255),
@@ -126,9 +120,6 @@ alter table if exists orders
 alter table if exists orders_details
     add constraint orders_details_orders_fk
     foreign key (order_id) references orders;
-alter table if exists products
-    add constraint products_categories_fk
-    foreign key (category_id) references categories;
 alter table if exists reviews
     add constraint reviews_users_fk
     foreign key (user_id) references users;

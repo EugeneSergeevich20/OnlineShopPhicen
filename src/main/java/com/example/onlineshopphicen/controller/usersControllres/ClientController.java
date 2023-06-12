@@ -1,10 +1,8 @@
 package com.example.onlineshopphicen.controller.usersControllres;
 
-import com.example.onlineshopphicen.model.Cart;
-import com.example.onlineshopphicen.model.Product;
-import com.example.onlineshopphicen.model.User;
-import com.example.onlineshopphicen.model.Wishlist;
+import com.example.onlineshopphicen.model.*;
 import com.example.onlineshopphicen.services.CartService;
+import com.example.onlineshopphicen.services.OrderService;
 import com.example.onlineshopphicen.services.WishListService;
 import com.example.onlineshopphicen.services.productService.ProductService;
 import com.example.onlineshopphicen.services.usersService.UserDetailsService;
@@ -13,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 public class ClientController {
 
@@ -20,13 +20,15 @@ public class ClientController {
     private final CartService cartService;
     private final ProductService productService;
     private final WishListService wishListService;
+    private final OrderService orderService;
 
     @Autowired
-    public ClientController(UserDetailsService userDetailsService, CartService cartService, ProductService productService, WishListService wishListService) {
+    public ClientController(UserDetailsService userDetailsService, CartService cartService, ProductService productService, WishListService wishListService, OrderService orderService) {
         this.userDetailsService = userDetailsService;
         this.cartService = cartService;
         this.productService = productService;
         this.wishListService = wishListService;
+        this.orderService = orderService;
     }
 
     @GetMapping("/cart")
@@ -83,9 +85,11 @@ public class ClientController {
 
     @GetMapping("/account/{id}")
     public String account(Model model, @PathVariable Long id){
-
+        User user = userDetailsService.findById(id);
+        List<Order> orders = orderService.getListOrder(user);
         model.addAttribute("userAuth", userDetailsService.getAuthUser());
-        model.addAttribute("account", userDetailsService.findById(id));
+        model.addAttribute("account", user);
+        model.addAttribute("orders", orders);
         return "account";
     }
 

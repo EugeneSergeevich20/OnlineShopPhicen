@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class OrderService {
@@ -26,10 +26,26 @@ public class OrderService {
                 .address(order.getAddress())
                 .status(OrderStatus.NEW)
                 .user(user)
+                .deliveryMethod(order.getDeliveryMethod())
                 .build();
 
         orderRepository.save(orderNew);
         orderDetailsService.createOrderDetails(cart, orderNew);
+    }
+
+    public List<Order> getListOrder(User user){
+        return orderRepository.findByUser(user);
+    }
+
+    public List<Order> findAll(){
+        return orderRepository.findAll();
+    }
+
+    @Transactional
+    public void updateStatus(Order order, Long id){
+        Order orderUpdate = orderRepository.findById(id).get();
+        orderUpdate.setStatus(order.getStatus());
+        orderRepository.save(orderUpdate);
     }
 
 }

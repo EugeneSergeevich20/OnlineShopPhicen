@@ -15,6 +15,9 @@
 
 <form th:method="POST" th:action="@{/order/createOrder/{id}(id=${userAuth.getId()})}" th:object="${order}">
     <input type="text" th:field="*{address}">
+    <select th:field="*{deliveryMethod}">
+        <option th:each="method : ${delivery}" th:value="${method.name()}" th:text="${method.displayValue}"></option>
+    </select>
     <input type="submit" value="Create">
 </form>
 </body>

@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-<html lang="ru" xmlns:th="http://www.thymeleaf.org"
-	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
 
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="format-detection" content="telephone=no">
-	<title>Mizi JHDtoys: account</title>
-	<link rel="stylesheet" href="/css/account.css">
+	<title>Mizi JHDtoys: страница менеджера</title>
+	<link rel="stylesheet" href="/css/manager.css">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
@@ -91,94 +90,23 @@
 
 	</div>
 </header>
+
 	<div class="content">
 		<div class="content__container">
-			<div class="myaccount">
-
-				<div class="myaccount__title">МОЙ АККАУНТ</div>
-
-				<div class="myaccount__field">
-					<div class="info">
-						<div class="info__item">
-							<div class="myaccount__name">Имя:
-								<span class="name__text" th:text="${account.name}">name</span>
-							</div>
-						</div>
-						<div class="info__item">
-							<div class="myaccount__surname">Фамилия:
-								<span class="surname__text" th:text="${account.surname}">surname</span>
-							</div>
-						</div>
-						<div class="info__item">
-							<div class="myaccount__mail">Почта:
-								<span class="mail__text" th:text="${account.email}">email</span>
-							</div>
-						</div>
-						<div class="info__item">
-							<div class="myaccount__tel">Телефон:
-								<span class="tel__text" th:text="${account.phone}">phone</span>
-							</div>
-						</div>
-						<div class="info__item">
-							<div class="item__edit">
-								<a th:href="@{/account/edit/{id}(id=${account.getId()})}" class="edit">редактировать аккаунт</a>
-							</div>
-						</div>
-					
-					
-						<div class="item__exit">
-							<form th:action="@{/logout}" th:method="POST">
-								<input class="inpex" type="submit" value="ВЫЙТИ ИЗ АККАУНТА">
-							</form>
-						</div>
-					
-					</div>
-
-					<div class="btnn">
-						<div class="btn__item" sec:authorize="hasRole('ROLE_ADMIN')">
-							<a th:href="@{/admin/users}" class="foradmin">администратор</a>
-						</div>
-						<div class="btn__item" sec:authorize="hasRole('ROLE_MANAGER')">
-							<a th:href="@{/manager/action}" class="formanager">менеджер</a>
-						</div>
-					</div>
+			<div class="btn">
+				<div class="btn__item">
+					<a class="item"  th:href="@{/manager/product/add}">ДОБАВИТЬ ТОВАР</a>
 				</div>
-
-				<div class="adminpage">
-					<div class="backgtitle">
-						<div class="page__title">История заказов:</div>
-					</div>
-	
-					<div class="backgtable">
-						<table class="table">
-							<tbody>
-								<tr>
-									<td>ДАТА</td>
-									<td>АДРЕС</td>
-									<td>СУММА</td>
-									<td>СТАТУС</td>
-								</tr>
-								
-								<tr th:each="order : ${orders}">
-									<td th:text="${order.getDateOrder()}"></td>
-									<td th:text="${order.address}"></td>
-									<td th:text="${order.orderTotal}"></td>
-									<td th:text="${order.status.displayValue}"></td>
-						
-								</tr>
-							</tbody>
-						</table>
-					</div>
-	
+				<div class="btn__item">
+					<a class="item" th:href="@{/manager/products}">ПРОСМОТРЕТЬ ТОВАРЫ</a>
 				</div>
-	
-
-
+				<div class="btn__item">
+					<a class="item" th:href="@{/manager/orders}">ПРОСМОТРЕТЬ ЗАКАЗЫ</a>
+				</div>
 			</div>
+
 		</div>
 	</div>
-
-
 </body>
 
 </html>
